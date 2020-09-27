@@ -30,7 +30,7 @@ class User extends Authenticatable
     public function getAvatarAttribute()
     {
         // return "images/avatar1.png/?u=" .$this->email;
-        return "images/avatar1.png";
+        return "/images/avatar1.png";
     }
 
     public function timeline()

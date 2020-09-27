@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfilesController extends Controller
 {
-    public function show($user)
+    public function show( User $user)
     {
-        return $user;
+        return view('profiles.show', compact('user'));
     }
 }

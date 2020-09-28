@@ -13,9 +13,13 @@ class ProfilesController extends Controller
     }
     public function edit(User $user)
     {
-        if($user->isNot(auth()->user())) {
-            abort(404);
-        }
+        // if($user->isNot(auth()->user())) {
+        //     abort(404);
+        // }
+        // abort_if($user->isNot(auth()->user()), 404);
+        
+        // $this->authorize('edit', $user);
+
         return view('profiles.edit', compact('user'));
     }
 }

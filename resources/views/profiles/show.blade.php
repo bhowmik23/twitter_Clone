@@ -21,13 +21,15 @@
                 <p class="text-sm">Joined {{ $user->created_at->diffForHumans() }}</p>
             </div>
             <div class="flex">
-                @if(auth()->user()->is($user))
+                <!-- @if(auth()->user()->is($user)) -->
+                @can('edit', $user)
                     <a href="{{ $user->path('edit') }}" 
                         class="rounded-full shadow py-2 px-2 text-black text-xs mr-2"
                     >
                         Edit Profile
                     </a>
-                @endif
+                @endcan
+                <!-- @endif -->
                 <x-follow-button :user='$user'></x-follow-button>
             </div>
         </div>

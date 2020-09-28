@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Followable;
 
     protected $fillable = [
         'name',
@@ -54,18 +54,8 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class);   
     }
 
-    public function follow(User $user)
-    {
-        return $this->follows()->save($user);
-    }
-
-    public function follows()
-    {
-        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'name';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'name';
+    // }
 }

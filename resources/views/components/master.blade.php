@@ -25,27 +25,11 @@
     <div id="app">
         <section class="px-8 py-4 mb-6">
             <header class="cointainer mx-auto">
-                <h5><img style="height:60px; width:60px:" src="https://www.transparentpng.com/thumb/twitter/white-twitter-icon-png-11.png" alt="white twitter icon png @transparentpng.com"></h5>
-                <h1 class="font-bold">twitter</h1>
+                <h1><img style="height:60px; width:60px:" src="https://www.transparentpng.com/thumb/twitter/white-twitter-icon-png-11.png" alt="Tweety"></h1>
+                <!-- <h1 class="font-bold">twitter</h1> -->
             </header>
         </section>
-        <section class="px-8">
-            <main class="mx-auto">
-
-                <div class="lg:flex lg:justify-between">
-                    <div class="lg:w-1/6">
-                        @include ('_sidebar-links')
-                    </div>
-                    <div class="lg:flex-1 lg:mx-10" style="max-width: 700px;">
-                        @yield('content')
-                    </div>
-                    <div class="lg:w-1/6 bg-blue-100 rounded-lg p-4">
-                        @include ('_friends-lists')
-                    </div>
-                </div>
-
-            </main>
-        </section>
+       {{ $slot }}
     </div>
 </body>
 </html>

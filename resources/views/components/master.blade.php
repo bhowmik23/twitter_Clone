@@ -25,8 +25,8 @@
     <div id="app">
         <section class="px-8 py-4 mb-6">
             <header class="cointainer mx-auto">
-                <h1><img style="height:60px; width:60px:" src="https://www.transparentpng.com/thumb/twitter/white-twitter-icon-png-11.png" alt="Tweety"></h1>
-                <!-- <h1 class="font-bold">twitter</h1> -->
+                <h1><img style="height:40px; width:40px:" src="/images/logo.png" alt="Tweety"></h1>
+                <h1 class="font-bold">twitter</h1>
             </header>
         </section>
        {{ $slot }}

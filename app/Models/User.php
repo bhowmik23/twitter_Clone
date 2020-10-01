@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Foundation;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,12 +12,14 @@ class User extends Authenticatable
     
     use HasFactory, Notifiable, Followable;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
+    // protected $fillable = [
+    //     'username',
+    //     'name',
+    //     'avatar',
+    //     'email',
+    //     'password',
+    // ];
+    protected $guarded  = [];
     protected $hidden = [
         'password',
         'remember_token',
@@ -27,10 +29,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getAvatarAttribute()
+    public function getAvatarAttribute($value)
     {
         // return "images/avatar1.png/?u=" .$this->email;
-        return "/images/avatar1.png";
+        return asset($value);
     }
 
     public function timeline()
@@ -58,7 +60,7 @@ class User extends Authenticatable
     {
         // return route('profile', $this->name);
 
-        $path = route('profile', $this->name);
+        $path = route('profile', $this->username);
 
         return $append ? "{$path}/{$append}" : $path;
     }

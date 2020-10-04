@@ -11,14 +11,6 @@ class User extends Authenticatable
 {
     
     use HasFactory, Notifiable, Followable;
-
-    // protected $fillable = [
-    //     'username',
-    //     'name',
-    //     'avatar',
-    //     'email',
-    //     'password',
-    // ];
     protected $guarded  = [];
     protected $hidden = [
         'password',
@@ -32,7 +24,12 @@ class User extends Authenticatable
     public function getAvatarAttribute($value)
     {
         // return "images/avatar1.png/?u=" .$this->email;
-        return asset($value);
+        return asset($value ?: '/avatars/avatar1.png');
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 
     public function timeline()

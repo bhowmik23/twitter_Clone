@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExploreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::middleware('auth')->group( function () {
         '/profiles/{user:username}', 
         [App\Http\Controllers\ProfilesController::class, 'update']
     )->middleware('can:edit,user');;
-    Route::get('/explore', [App\Http\Controllers\ExploreController::class, 'index'])->name('index');
+    Route::get('/explore',ExploreController::class);
 });
 
 Route::get('/profiles/{user:username}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profile');

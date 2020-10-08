@@ -4,12 +4,13 @@ namespace App\Models;
 use Illuminate\Foundation;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Jenssegers\Mongodb\Auth\User as Authenticatable;
+
 class User extends Authenticatable
-{
-    
+{ 
     use HasFactory, Notifiable, Followable;
     protected $guarded  = [];
     protected $hidden = [
@@ -23,7 +24,6 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value)
     {
-        // return "images/avatar1.png/?u=" .$this->email;
         return asset($value ?: '/avatars/avatar1.png');
     }
 
@@ -34,15 +34,8 @@ class User extends Authenticatable
 
     public function timeline()
     {
-    //     return Tweet::where('user_id', $this->id)->latest()->get();
-        // include all of the user's tweets
-        // as well as the tweets of everyone
-        // they follow.....in desc order by date
-
         $friends = $this->follows()->pluck('id');
-        // $ids->push($this->id);
 
-        // return Tweet::whereIn('user_id', $ids)->latest()->get();
         return Tweet::whereIn('user_id', $friends)
                 ->orwhere('user_id', $this->id)
                 ->latest()->paginate(20);
@@ -55,15 +48,8 @@ class User extends Authenticatable
 
     public function path($append = '')
     {
-        // return route('profile', $this->name);
-
         $path = route('profile', $this->username);
 
         return $append ? "{$path}/{$append}" : $path;
     }
-
-    // public function getRouteKeyName()
-    // {
-    //     return 'name';
-    // }
 }

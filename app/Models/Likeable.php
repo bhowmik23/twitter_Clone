@@ -2,12 +2,12 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
-
+// use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 trait Likeable
 {
-    use HasFactory;
-
+    protected $guarded = [];
     public function like($user = null, $liked = true)
     {
         return $this->likes()->updateOrCreate([

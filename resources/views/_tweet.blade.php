@@ -8,9 +8,9 @@
         <a href="{{ $tweet->user->path() }}">
             <h5 class="font-bold mb-4">{{ $tweet->user->name }}</h5>
         </a>
-        <p class="text-sm mb-3">{{ $tweet->body }}</p>
+        <p class="text-sm mb-3">{{ $tweet->body  }}</p>
         <div class="flex">
-            <div class="flex items-center mr-4">
+            <div class="flex items-center mr-4 {{ $tweet->isLikedBy(current_user()) ? 'text-blue-500' : 'text-gray-500'}} ">
                 <svg viewBox="0 0 20 20" class="text-gray-500 mr-1 w-3" >
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <g class="fill-current">
@@ -20,9 +20,9 @@
                     </g>
                     </g>
                 </svg>
-                <span xlass="text-xs text-gray-500"> {{ $tweet->likes }} </span>
+                <span xlass="text-xs text-gray-500"> {{ $tweet->likes ?: 0 }} </span>
             </div>
-            <div class="flex items-center">
+            <div class="flex items-center {{ $tweet->isDislikedBy(current_user()) ? 'text-blue-500' : 'text-gray-500' }}">
                 <svg viewBox="0 0 20 20" class="text-gray-500 mr-1 w-3">
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <g class="fill-current">
@@ -30,7 +30,7 @@
                         </g>
                     </g>
                 </svg>
-                <span xlass="text-xs text-gray-500"> {{ $tweet->dislikes }} </span>
+                <span xlass="text-xs text-gray-500"> {{ $tweet->dislikes ?: 0 }} </span>
             </div>
         </div>
     </div>

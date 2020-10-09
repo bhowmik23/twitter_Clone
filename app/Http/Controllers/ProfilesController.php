@@ -12,18 +12,15 @@ class ProfilesController extends Controller
     {
         return view('profiles.show', [
             'user' => $user,
-            'tweets' => $user->tweets()->paginate(10),
+            'tweets' => $user->tweets()->paginate(50),
+            'tweets' => $user
+                ->tweets()
+                ->withLikes()
+                ->paginate(50),
         ]);
     }
     public function edit(User $user)
     {
-        // if($user->isNot(auth()->user())) {
-        //     abort(404);
-        // }
-        // abort_if($user->isNot(auth()->user()), 404);
-        
-        // $this->authorize('edit', $user);
-
         return view('profiles.edit', compact('user'));
     }
 
